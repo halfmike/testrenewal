@@ -1,8 +1,13 @@
-# testrenewal
-Renewal Тестовое задание
+# Renewal Тестовое задание
+## База данных
 
-Дамп базы в testrenewal.sql
-Параметры подключения в confog.ini
-В папке lib файлы фреймворка
+*Дамп базы в testrenewal.sql
 
-Запускать "testrenewal/", не "testrenewal/index.php"
+*Параметры подключения в confog.ini
+
+## Запуск
+
+*Запускать "testrenewal/", не "testrenewal/index.php"
+
+*В папке lib файлы фреймворка
+

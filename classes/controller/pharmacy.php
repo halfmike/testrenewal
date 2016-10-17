@@ -1,6 +1,8 @@
 <?php
 
-
+/**
+ * контроллер Аптеки
+ */
 class Pharmacy Extends Controller
 {
     CONST VIEW = 'pharmacy';
@@ -19,6 +21,9 @@ class Pharmacy Extends Controller
         $this->pharmacy = (int)$this->pharmacyId ? $this->model->getPharmacy($this->pharmacyId) : false;
     }
 
+    /**
+     * вывод данных по аптеке
+     */
     public function show()
     {
         if (empty($this->pharmacy)) $this->page404();
@@ -30,6 +35,9 @@ class Pharmacy Extends Controller
         $this->render();
     }
 
+    /**
+     * добавление аптеки
+     */
     public function add()
     {
         if ($_POST['action'] == 'add')
@@ -52,7 +60,9 @@ class Pharmacy Extends Controller
         $this->render();
     }
 
-    # привязка к псевдониму
+    /**
+     * привязка к псевдониму
+     */
     public function savealias()
     {
         try
@@ -74,7 +84,9 @@ class Pharmacy Extends Controller
         $this->sendResponse($result);
     }
 
-    # список продуктов, поставленных в аптеку
+    /**
+     * список продуктов, поставленных в аптеку
+     */
     public function getsupplys()
     {
         try

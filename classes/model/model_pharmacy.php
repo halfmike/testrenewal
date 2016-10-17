@@ -1,23 +1,32 @@
 <?php
 
+/**
+ * модель Аптека
+ */
 
 class Model_Pharmacy Extends Model
 {
-    # получить список аптек
+    /**
+     * получить список аптек
+     */
     public function getPharmacys()
     {
         $res = $this->db->exec('SELECT id, name FROM pharmacy order by name');
         return $res;
     }
 
-    # получить аптеку
+    /**
+     * получить аптеку
+     */
     public function getPharmacy($pharmacyId)
     {
         $res = $this->db->exec('SELECT id, name FROM pharmacy WHERE id=' . $pharmacyId);
         return $res[0];
     }
 
-    # добавить аптеку
+    /**
+     * добавить аптеку
+     */
     public function addPharmacy($name)
     {
         $res = $this->db->exec('SELECT id, name FROM pharmacy WHERE name=\'' . $name . '\'');
@@ -25,7 +34,9 @@ class Model_Pharmacy Extends Model
         $this->db->exec('INSERT INTO pharmacy SET name=\'' . $name . '\'');
     }
 
-    # списки псевдонимов для аптек разбитый по дистрибьюторам
+    /**
+     * списки псевдонимов для аптек разбитый по дистрибьюторам
+     */
     public function getAliasList($pharmacyId)
     {
         $sql = 'SELECT pa.id, pa.alias, pa.pharmacy_id, d.name, d.id dealer_id
@@ -43,7 +54,9 @@ class Model_Pharmacy Extends Model
         return $res;
     }
 
-    # привязка псевдонима к аптеке для конкретного дистрибьютора
+    /**
+     * привязка псевдонима к аптеке для конкретного дистрибьютора
+     */
     public function savePharmacyAlias($pharmacyId, $aliasId, $dealerId)
     {
         $sql = 'UPDATE pharmacy_alias SET pharmacy_id=null WHERE pharmacy_id=' . $pharmacyId . ' AND dealer_id=' . $dealerId;
@@ -55,7 +68,9 @@ class Model_Pharmacy Extends Model
         }
     }
 
-    # поставки препаратов для аптеки
+    /**
+     * поставки препаратов для аптеки
+     */
     public function getSupplys($pharmacyId, $dealerId)
     {
         $param = $dealerId ? ' AND pa.dealer_id=' . $dealerId . ' AND pha.dealer_id=' . $dealerId . ' ' : '';

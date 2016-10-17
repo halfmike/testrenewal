@@ -1,23 +1,31 @@
 <?php
 
-
+/**
+ * модель Продукт
+ */
 class Model_product Extends Model
 {
-    # список препаратов
+    /**
+     * список препаратов
+     */
     public function getProducts()
     {
         $res = $this->db->exec('SELECT id, name FROM product order by name');
         return $res;
     }
 
-    # получить препарат
+    /**
+     * получить препарат
+     */
     public function getProduct($productId)
     {
         $res = $this->db->exec('SELECT id, name FROM product WHERE id=' . $productId);
         return $res[0];
     }
 
-    # добавить препарат
+    /**
+     * добавить препарат
+     */
     public function addProduct($name)
     {
         $res = $this->db->exec('SELECT id, name FROM product WHERE name=\'' . $name . '\'');
@@ -25,7 +33,9 @@ class Model_product Extends Model
         $this->db->exec('INSERT INTO product SET name=\'' . $name . '\'');
     }
 
-    # списки псевдонимов для препаратов разбитый по дистрибьюторам
+    /**
+     * списки псевдонимов для препаратов разбитый по дистрибьюторам
+     */
     public function getAliasList($productId)
     {
         $sql = 'SELECT pa.id, pa.alias, pa.product_id, d.name, d.id dealer_id
@@ -43,7 +53,9 @@ class Model_product Extends Model
         return $res;
     }
 
-    # привязка псевдонима к продукту для конкретного дистрибьютора
+    /**
+     * привязка псевдонима к продукту для конкретного дистрибьютора
+     */
     public function saveProductAlias($productId, $aliasId, $dealerId)
     {
         $sql = 'UPDATE product_alias SET product_id=null WHERE product_id=' . $productId . ' AND dealer_id=' . $dealerId;

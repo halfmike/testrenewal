@@ -1,6 +1,8 @@
 <?php
 
-
+/**
+ * контроллер Дистрибьютора
+ */
 class Dealer Extends Controller
 {
     CONST VIEW = 'dealer';
@@ -19,6 +21,9 @@ class Dealer Extends Controller
         $this->dealer = (int)$this->dealerId ? $this->model->getDealer($this->dealerId) : false;
     }
 
+    /**
+     * показ списка поставки
+     */
     public function show()
     {
         if (empty($this->dealer)) $this->page404();
@@ -29,7 +34,9 @@ class Dealer Extends Controller
         $this->render();
     }
 
-    # вгрузка поставки
+    /**
+     * вгрузка поставки
+     */
     public function upload()
     {
         $result = [];
@@ -57,7 +64,9 @@ class Dealer Extends Controller
         $this->sendResponse($result);
     }
 
-    # парсинг файла поставки
+    /**
+     * парсинг файла поставки
+     */
     private function parseSupplyFile($file)
     {
         if (!file_exists($file)) throw new Exception('файл отсутствует');
@@ -75,7 +84,9 @@ class Dealer Extends Controller
         return $correctData;
     }
 
-    # удаление поставки
+    /**
+     * удаление поставки
+     */
     public function delsupply()
     {
         $result = [];

@@ -1,6 +1,8 @@
 <?php
 
-
+/**
+ * контроллер Продукт
+ */
 class Product Extends Controller
 {
     CONST VIEW = 'product';
@@ -19,6 +21,9 @@ class Product Extends Controller
         $this->product = (int)$this->productId ? $this->model->getproduct($this->productId) : false;
     }
 
+    /**
+     * вывод данных о продукте
+     */
     public function show()
     {
         if (empty($this->product)) $this->page404();
@@ -28,6 +33,9 @@ class Product Extends Controller
         $this->render();
     }
 
+    /**
+     * добавление продукта
+     */
     public function add()
     {
         if ($_POST['action'] == 'add')
@@ -50,7 +58,9 @@ class Product Extends Controller
         $this->render();
     }
 
-
+    /**
+     * привязка продукта к псевдонимам
+     */
     public function savealias()
     {
         try

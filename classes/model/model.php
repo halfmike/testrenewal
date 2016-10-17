@@ -1,6 +1,8 @@
 <?php
 
-
+/**
+ * Базовый класс модели
+ */
 class Model
 {
     protected $db;
@@ -15,28 +17,36 @@ class Model
         $this->db = $db;
     }
 
-    # получить дистрибьютора
+    /**
+     * получить дистрибьютора
+     */
     public function getDealer(int $id)
     {
         $res = $this->db->exec('SELECT id, name, pattern FROM dealer WHERE id =' . $id);
         return $res[0];
     }
 
-    # список дистрибьюторов
+    /**
+     * список дистрибьюторов
+     */
     public function getDealers()
     {
         $res = $this->db->exec('SELECT id, name FROM dealer order by name');
         return $res;
     }
 
-    # получить псевдоним для аптеки
+    /**
+     * получить псевдоним для аптеки
+     */
     public function getPharmacyAlias(int $id)
     {
         $res = $this->db->exec('SELECT id, pharmacy_id, alias, dealer_id FROM pharmacy_alias WHERE id =' . $id);
         return $res[0];
     }
 
-    # получить псевдоним для продукта
+    /**
+     * получить псевдоним для продукта
+     */
     public function getProductAlias(int $id)
     {
         $res = $this->db->exec('SELECT id, product_id, alias, dealer_id FROM product_alias WHERE id =' . $id);

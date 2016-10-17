@@ -1,10 +1,15 @@
 <?php
 
-
+/**
+ * модель Дистрибьтор
+ */
 class Model_Dealer Extends Model
 {
-    # вгрузка данных для дистрибьютора
-    # добавление псевдонимов
+
+    /**
+     * вгрузка данных для дистрибьютора
+     * добавление псевдонимов
+     */
     public function insertSupplyData($data, $dealerId, $file)
     {
         $sql = 'INSERT INTO supply SET dealer_id=' . $dealerId . ', date=SYSDATE(), file=\'' . $file . '\'';
@@ -44,7 +49,9 @@ class Model_Dealer Extends Model
         }
     }
 
-    # все поставки для дистрибьютора
+    /**
+     * все поставки для дистрибьютора
+     */
     public function getSupplys($dealerId)
     {
         $sql = 'SELECT s.id, s.date, s.file, count(sl.id) as count
@@ -57,7 +64,9 @@ class Model_Dealer Extends Model
         return $res;
     }
 
-    # имя файл поставки
+    /**
+     * имя файл поставки
+     */
     public function getFileSupply($supplyId, $dealerId)
     {
         $sql = 'SELECT file FROM supply WHERE id=' . $supplyId . ' AND dealer_id=' . $dealerId;
@@ -65,7 +74,9 @@ class Model_Dealer Extends Model
         return $res[0]['file'];
     }
 
-    # удаление поставки
+    /**
+     * удаление поставки
+     */
     public  function delSupply($supplyId, $dealerId)
     {
         $sql = 'SELECT id FROM supply WHERE id=' . $supplyId . ' AND dealer_id=' . $dealerId;

@@ -1,7 +1,9 @@
 <?php
 
 
-
+/**
+ * Базовый класс контроллер
+ */
 class Controller
 {
     protected $model;
@@ -21,9 +23,9 @@ class Controller
         $this->render();
     }
 
-    # рендернг страницы
-    # каркас - layout.html
-    # наполение - content
+    /**
+     * рендеринг страницы
+     */
     protected function render()
     {
         $this->f3->set('content', View::instance()->render('view/' . $this::VIEW . '.php'));
@@ -31,7 +33,9 @@ class Controller
         exit;
     }
 
-    # отправка результата через ajax в формате json
+    /**
+     * отправка результата через ajax в формате json
+     */
     protected function sendResponse($result)
     {
         echo json_encode($result);

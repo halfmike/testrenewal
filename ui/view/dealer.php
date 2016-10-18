@@ -37,6 +37,9 @@
             buttonName : 'btn-success',
             buttonText : ' Файл'
         });
+
+        // загрузка файла поставки
+        // все загружается через ajax
         $('#uploadBtn').click(function(e){
             e.stopPropagation();
             e.preventDefault();
@@ -56,6 +59,7 @@
                 },
                 success: function( data ){
                     if( data.status == 'success' ){
+                        // рендеринг шаблоны поставок
                         $('#supplyTab').html($('#tplSupply').render(data));
                         $('.delSupBtn').on('click', function() {
                             delSupply(this);

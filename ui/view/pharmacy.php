@@ -1,5 +1,6 @@
 <script>
     $(function() {
+        // сохраниние соответствий псевдонимов
         $('.alias').click(function() {
             var data = {
                 'dealer' : $(this).attr('name'),
@@ -29,6 +30,7 @@
             });
         });
 
+        // получение поставок для аптеки
         $('#selectDis').change(function(){
             var data = {
                 'dealer' : $('#selectDis option:selected').val(),
